@@ -3,21 +3,18 @@ const baseUrl = 'https://pixabay.com/api/';
 export default {
   page: 1,
   query: '',
+  apiKey: '12932265-6a67b47d81c2d99d25931322f',
   fetchImages() {
-    const options = {
-      headers: {
-        Authorization: '12932265-6a67b47d81c2d99d25931322f',
-      },
-    };
+    const requestParams = `?key=${this.apiKey}?q=${this.query}&page=${
+      this.page
+    }&per_page=10`;
 
-    const requestParams = `?q=${this.query}&page=${this.page}&pageSize=10`;
-
-    return fetch(baseUrl + requestParams, options)
+    return fetch(baseUrl + requestParams)
       .then(response => response.json())
       .then(parsedResponse => {
         this.incrementPage();
 
-        return parsedResponse;
+        return parsedResponse.hits;
       });
   },
   get searchQuery() {

@@ -2,7 +2,7 @@ import galleryService from './services/gallery-service';
 import galleryListItemsTemplate from '../templates/gallery-items.hbs';
 
 const refs = {
-  searchForm: document.querySelector('#search-form'),
+  searchForm: document.querySelector('search-form'),
   gallery: document.querySelector('#gallery'),
   loadMoreBtn: document.querySelector('button[data-action="load-more"]'),
 };
@@ -41,10 +41,9 @@ function fetchImages() {
 }
 
 function isertListItems(items) {
-  // const markup = articleListItemsTemplate(items);
-  console.log(items);
-
-  // refs.articleList.insertAdjacentHTML('beforeend', markup);
+  const markup = galleryListItemsTemplate(items);
+  console.log(markup);
+  refs.gallery.insertAdjacentHTML('beforeend', markup);
 }
 
 function clearListItems() {

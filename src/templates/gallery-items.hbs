@@ -1,20 +1,20 @@
 {{#each this}}
-`<li class="gallery__item">
+<li class="gallery__item">
   <a
     class="gallery__link"
-    href="${e.original}"
+    href="{{largeImageURL}}"
   >
   
     <img
       class="gallery__image"
-      src="${e.preview}"
-      data-source="${e.original}"
-      alt="${e.description}"
+      src="{{previewURL}}"
+      data-source="{{largeImageURL}}"
+      alt="{{tags}}"
     />
 
     <span class="gallery__icon">
       <i class="material-icons">zoom_out_map</i>
     </span>
   </a>
-</li>`
+</li>
 {{/each}}
