@@ -2,7 +2,7 @@ import galleryService from './services/gallery-service';
 import galleryListItemsTemplate from '../templates/gallery-items.hbs';
 
 const refs = {
-  searchForm: document.querySelector('search-form'),
+  searchForm: document.querySelector('#search-form'),
   gallery: document.querySelector('#gallery'),
   loadMoreBtn: document.querySelector('button[data-action="load-more"]'),
 };
