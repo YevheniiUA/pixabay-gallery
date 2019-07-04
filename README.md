@@ -1,1 +1,1 @@
-# js-group-11-12
+# pixabay-gallery
