@@ -7,45 +7,47 @@ const refs = {
   loadMoreBtn: document.querySelector('button[data-action="load-more"]'),
 };
 
-refs.searchForm.addEventListener('submit', searchFormSubmitHandler);
-refs.loadMoreBtn.addEventListener('click', loadMoreBtnHandler);
+console.log(refs);
 
-function searchFormSubmitHandler(e) {
-  e.preventDefault();
+// refs.searchForm.addEventListener('submit', searchFormSubmitHandler);
+// refs.loadMoreBtn.addEventListener('click', loadMoreBtnHandler);
 
-  const form = e.currentTarget;
-  const input = form.elements.query;
+// function searchFormSubmitHandler(e) {
+//   e.preventDefault();
 
-  clearListItems();
+//   const form = e.currentTarget;
+//   const input = form.elements.query;
 
-  galleryService.resetPage();
-  galleryService.searchQuery = input.value;
-  fetchImages();
+//   clearListItems();
 
-  input.value = '';
-}
+//   galleryService.resetPage();
+//   galleryService.searchQuery = input.value;
+//   fetchImages();
 
-function loadMoreBtnHandler() {
-  fetchImages();
-}
+//   input.value = '';
+// }
 
-function fetchImages() {
-  galleryService
-    .fetchImages()
-    .then(images => {
-      isertListItems(images);
-    })
-    .catch(error => {
-      console.warn(error);
-    });
-}
+// function loadMoreBtnHandler() {
+//   fetchImages();
+// }
 
-function isertListItems(items) {
-  const markup = galleryListItemsTemplate(items);
-  console.log(markup);
-  refs.gallery.insertAdjacentHTML('beforeend', markup);
-}
+// function fetchImages() {
+//   galleryService
+//     .fetchImages()
+//     .then(images => {
+//       isertListItems(images);
+//     })
+//     .catch(error => {
+//       console.warn(error);
+//     });
+// }
 
-function clearListItems() {
-  refs.gallery.innerHTML = '';
-}
+// function isertListItems(items) {
+//   const markup = galleryListItemsTemplate(items);
+//   console.log(markup);
+//   refs.gallery.insertAdjacentHTML('beforeend', markup);
+// }
+
+// function clearListItems() {
+//   refs.gallery.innerHTML = '';
+// }
