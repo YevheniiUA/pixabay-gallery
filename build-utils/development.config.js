@@ -7,9 +7,9 @@ module.exports = env => ({
     rules: [
       {
         test: /\.css$/,
-        use: ['style-loader', 'css-loader', 'postcss-loader']
-      }
-    ]
+        use: ['style-loader', 'css-loader', 'postcss-loader'],
+      },
+    ],
   },
   plugins: [new HtmlWebpackPlugin({ template: './index.html' })],
   devServer: {
@@ -21,6 +21,6 @@ module.exports = env => ({
     quiet: true,
     clientLogLevel: 'warning',
     stats: 'errors-only',
-    open: true
-  }
+    open: true,
+  },
 });

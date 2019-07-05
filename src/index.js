@@ -1,2 +1,2 @@
-// import './js/gallery';
-// import './css/styles.css';
+import './js/gallery';
+import './css/styles.css';

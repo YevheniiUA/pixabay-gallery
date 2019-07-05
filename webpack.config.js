@@ -14,14 +14,14 @@ module.exports = env =>
       entry: './index.js',
       output: {
         path: path.resolve(__dirname, 'dist'),
-        filename: '[name].bundle.js'
+        filename: '[name].bundle.js',
       },
       module: {
         rules: [
           {
             test: /\.js$/,
             exclude: /node_modules/,
-            use: ['babel-loader']
+            use: ['babel-loader'],
           },
           {
             test: /\.(gif|png|jpe?g|svg)$/i,
@@ -30,26 +30,26 @@ module.exports = env =>
                 loader: 'url-loader',
                 options: {
                   name: '[path]/[name].[ext]',
-                  limit: 5000
-                }
-              }
-            ]
+                  limit: 5000,
+                },
+              },
+            ],
           },
           {
             test: /\.html$/,
-            use: 'html-loader'
+            use: 'html-loader',
           },
           {
             test: /\.hbs$/,
-            use: 'handlebars-loader'
-          }
-        ]
+            use: 'handlebars-loader',
+          },
+        ],
       },
       plugins: [
         new CleanWebpackPlugin(),
         new FriendlyErrorsWebpackPlugin(),
-        new WebpackBar()
-      ]
+        new WebpackBar(),
+      ],
     },
-    loadModeConfig(env)
+    loadModeConfig(env),
   );

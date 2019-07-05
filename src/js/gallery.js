@@ -1,5 +1,6 @@
 import galleryService from './services/gallery-service';
 import galleryListItemsTemplate from '../templates/gallery-items.hbs';
+import openModal from './services/open-modal';
 
 const refs = {
   searchForm: document.querySelector('#search-form'),
@@ -7,47 +8,45 @@ const refs = {
   loadMoreBtn: document.querySelector('button[data-action="load-more"]'),
 };
 
-console.log(refs);
+refs.searchForm.addEventListener('submit', searchFormSubmitHandler);
+refs.loadMoreBtn.addEventListener('click', loadMoreBtnHandler);
 
-// refs.searchForm.addEventListener('submit', searchFormSubmitHandler);
-// refs.loadMoreBtn.addEventListener('click', loadMoreBtnHandler);
+function searchFormSubmitHandler(e) {
+  e.preventDefault();
 
-// function searchFormSubmitHandler(e) {
-//   e.preventDefault();
+  const form = e.currentTarget;
+  const input = form.elements.query;
 
-//   const form = e.currentTarget;
-//   const input = form.elements.query;
+  clearListItems();
 
-//   clearListItems();
+  galleryService.resetPage();
+  galleryService.searchQuery = input.value;
+  fetchImages();
 
-//   galleryService.resetPage();
-//   galleryService.searchQuery = input.value;
-//   fetchImages();
+  input.value = '';
+}
 
-//   input.value = '';
-// }
+function loadMoreBtnHandler() {
+  fetchImages();
+}
 
-// function loadMoreBtnHandler() {
-//   fetchImages();
-// }
+function fetchImages() {
+  galleryService
+    .fetchImages()
+    .then(images => {
+      isertListItems(images);
+    })
+    .catch(error => {
+      console.warn(error);
+    });
+}
 
-// function fetchImages() {
-//   galleryService
-//     .fetchImages()
-//     .then(images => {
-//       isertListItems(images);
-//     })
-//     .catch(error => {
-//       console.warn(error);
-//     });
-// }
+function isertListItems(items) {
+  const markup = galleryListItemsTemplate(items);
+  refs.gallery.insertAdjacentHTML('beforeend', markup);
+  openModal.start(refs.gallery);
+}
 
-// function isertListItems(items) {
-//   const markup = galleryListItemsTemplate(items);
-//   console.log(markup);
-//   refs.gallery.insertAdjacentHTML('beforeend', markup);
-// }
-
-// function clearListItems() {
-//   refs.gallery.innerHTML = '';
-// }
+function clearListItems() {
+  refs.gallery.innerHTML = '';
+}
