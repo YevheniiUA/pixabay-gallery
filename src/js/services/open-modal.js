@@ -54,6 +54,7 @@ export default {
 
   closeModal() {
     this.refs.ovelray.classList.remove('is-visible');
+    this.refs.ovelrayImg.setAttribute('src', '');
     window.removeEventListener('keydown', this.handlerKeyPress.bind(this));
   },
 };
