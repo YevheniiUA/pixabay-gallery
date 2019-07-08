@@ -1,7 +1,7 @@
 export default {
   baseUrl: 'https://pixabay.com/api/',
   page: 1,
-  perPage: 30,
+  perPage: 9,
   query: '',
   apiKey: '12932265-6a67b47d81c2d99d25931322f',
   fetchImages() {

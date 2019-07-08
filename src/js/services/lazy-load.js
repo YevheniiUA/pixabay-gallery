@@ -1,5 +1,8 @@
 const lazyLoad = targets => {
-  const options = {};
+  const options = {
+    rootMargin: '50px',
+    threshold: 0.01,
+  };
   targets.forEach(target => {
     const io = new IntersectionObserver((entries, observer) => {
       entries.forEach(entry => {
