@@ -9,6 +9,8 @@ const refs = {
   loadMoreBtn: document.querySelector('button[data-action="load-more"]'),
 };
 
+openModal.start(refs.gallery);
+
 refs.searchForm.addEventListener('submit', searchFormSubmitHandler);
 refs.loadMoreBtn.addEventListener('click', loadMoreBtnHandler);
 
@@ -45,8 +47,11 @@ function fetchImages() {
 function isertListItems(items) {
   const markup = galleryListItemsTemplate(items);
   refs.gallery.insertAdjacentHTML('beforeend', markup);
-  lazyLoad(document.querySelectorAll('.gallery__image'));
-  openModal.start(refs.gallery);
+  lazyLoad(
+    Array.from(document.querySelectorAll('.gallery__image')).filter(
+      image => !image.getAttribute('src'),
+    ),
+  );
 }
 
 function clearListItems() {
