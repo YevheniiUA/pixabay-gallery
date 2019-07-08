@@ -1,6 +1,7 @@
 import galleryService from './services/gallery-service';
 import galleryListItemsTemplate from '../templates/gallery-items.hbs';
 import openModal from './services/open-modal';
+import { lazyLoad } from './services/lazy-load';
 
 const refs = {
   searchForm: document.querySelector('#search-form'),
@@ -44,6 +45,7 @@ function fetchImages() {
 function isertListItems(items) {
   const markup = galleryListItemsTemplate(items);
   refs.gallery.insertAdjacentHTML('beforeend', markup);
+  lazyLoad(document.querySelectorAll('.gallery__image'));
   openModal.start(refs.gallery);
 }
 

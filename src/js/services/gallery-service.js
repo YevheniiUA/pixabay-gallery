@@ -1,12 +1,13 @@
 export default {
   baseUrl: 'https://pixabay.com/api/',
   page: 1,
+  perPage: 30,
   query: '',
   apiKey: '12932265-6a67b47d81c2d99d25931322f',
   fetchImages() {
     const requestParams = `?key=${this.apiKey}&q=${this.query}&page=${
       this.page
-    }&per_page=9`;
+    }&per_page=${this.perPage}`;
 
     return fetch(this.baseUrl + requestParams)
       .then(response => response.json())
